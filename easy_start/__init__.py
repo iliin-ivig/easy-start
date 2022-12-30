@@ -1,1 +1,1 @@
-#from easy_start.file import *
+from easy_start.project_template_renderer import ProjectTemplateRenderer

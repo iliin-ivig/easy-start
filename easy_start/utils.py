@@ -66,7 +66,7 @@ def create_dataclass_from_argument_parser(
         for key, value in parsed_arguments.__dict__.items()
         if all([
             not skip_unexpected_arguments or key in key in dataclass.__annotations__,
-            not skip_none or value is None,
+            not skip_none or value is not None,
         ])
     }
 

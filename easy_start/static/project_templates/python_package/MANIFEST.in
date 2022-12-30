@@ -1,0 +1,2 @@
+recursive-include {{package_name}}/static *
+exclude {{package_name}}/static/README.md

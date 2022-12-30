@@ -1,6 +1,45 @@
 #!/usr/bin/env python3
 
-from easy_start import *
+from easy_start.project_templates import PythonPackageSettings, start_python_package
+import easy_start.utils as utils
+
+from pathlib import Path
+import argparse
+
+
+PROJECT_TEMPLATE_TO_SETTINGS_AND_INITIALIZER = {
+    'python-package': (PythonPackageSettings, start_python_package),
+}
+
+
+def get_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser()
+
+    subparsers = parser.add_subparsers(dest='project_template', required=True)
+    for project_template, (settings, _) in PROJECT_TEMPLATE_TO_SETTINGS_AND_INITIALIZER.items():
+        subparser = argparse.ArgumentParser()
+        subparser.add_argument(
+            '--destination',
+            type=Path,
+            default=Path('.'),
+        )
+        utils.add_arguments_from_dataclass(subparser, settings)
+
+        subparsers.add_parser(
+            project_template,
+            parents=[subparser],
+            add_help=False,
+        )
+
+    return parser
+
 
 if __name__ == '__main__':
-    pass
+    args = get_parser().parse_args()
+
+    settings, initializer = PROJECT_TEMPLATE_TO_SETTINGS_AND_INITIALIZER[args.project_template]
+
+    initializer(
+        args.destination,
+        utils.create_dataclass_from_argument_parser(dataclass=settings, parsed_arguments=args),
+    )

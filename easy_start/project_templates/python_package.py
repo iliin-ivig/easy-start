@@ -11,8 +11,8 @@ class PythonPackageSettings:
     full_package_name: str | None = None
     description: str = 'short package description'
     url: str = 'https://github.com/...'
-    requirements: list[str] = dataclasses.field(default_factory=list)
-    scripts: list[str] = dataclasses.field(default_factory=list)
+    requirements: tuple[str] = tuple()
+    scripts: tuple[str] = tuple()
     include_static_data: bool = True
 
     def __post_init__(self):
@@ -43,3 +43,10 @@ def start_python_package(destination: Path, settings: PythonPackageSettings):
         ] if settings.include_static_data else [],
         **settings_dict,
     )
+
+    for script in settings.scripts:
+        renderer.render(
+            '{{package_name}}/bin/{{script}}',
+            script=script,
+            **settings_dict,
+        )

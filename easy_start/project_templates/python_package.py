@@ -11,8 +11,8 @@ class PythonPackageSettings:
     full_package_name: str | None = None
     description: str = 'short package description'
     url: str = 'https://github.com/...'
-    requirements: tuple[str] = tuple()
-    scripts: tuple[str] = tuple()
+    requirements: list[str] = dataclasses.field(default_factory=list)
+    scripts: list[str] = dataclasses.field(default_factory=list)
     include_static_data: bool = True
 
     def __post_init__(self):

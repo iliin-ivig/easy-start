@@ -1,0 +1,2 @@
+recursive-include easy_start/static *
+exclude easy_start/static/README.md

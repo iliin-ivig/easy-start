@@ -1,4 +1,5 @@
 from pathlib import Path
+from case_transform import transform, CaseStyle
 import dataclasses
 import argparse
 import jinja2
@@ -47,7 +48,7 @@ def add_arguments_from_dataclass(parser: argparse.ArgumentParser, dataclass):
                     kwargs['type'] = value_type
 
         parser.add_argument(
-            f"--{field_name.replace('_', '-')}",
+            '--' + transform(field_name, from_style=CaseStyle.SNAKE_CASE, to_style=CaseStyle.KEBAB_CASE),
             dest=field_name,
             **kwargs
         )

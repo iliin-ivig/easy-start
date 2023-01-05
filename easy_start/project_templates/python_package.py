@@ -1,5 +1,6 @@
 from easy_start import ProjectTemplateRenderer
 from easy_start.utils import PATH_TO_STATIC_DATA, convert_dataclass_to_dict
+from case_transform import CaseStyle
 
 from pathlib import Path
 import dataclasses
@@ -18,6 +19,8 @@ class PythonPackageSettings:
     def __post_init__(self):
         if self.full_package_name is None:
             self.full_package_name = self.package_name
+
+        assert CaseStyle.SNAKE_CASE.match(self.package_name)
 
 
 def start_python_package(destination: Path, settings: PythonPackageSettings):

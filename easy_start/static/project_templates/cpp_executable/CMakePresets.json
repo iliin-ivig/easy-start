@@ -1,0 +1,43 @@
+{
+    "version": 3,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 22,
+        "patch": 0
+    },
+    "configurePresets": [
+        {
+            "name": "default",
+            "displayName": "Default Config",
+            "description": "Default build",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build",
+            "cacheVariables": {
+                "{{project_short_name | uppersnakecase}}_USE_CONAN": "ON",
+                "{{project_short_name | uppersnakecase}}_AUTODETECT_EXECUTABLES": "ON",
+                "CMAKE_CXX_STANDARD": "20",
+                "CMAKE_CXX_STANDARD_REQUIRED": "YES"
+            },
+            "environment": {
+            }
+        },
+        {
+            "name": "gcc",
+            "displayName": "GCC",
+            "description": "Default build options for GCC",
+            "inherits": "default",
+            "cacheVariables": {
+                "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Wfatal-errors -Wpointer-arith -Wcast-qual -Wconversion -Wsign-conversion -Wlogical-op -Wduplicated-branches -Wduplicated-cond -Wdouble-promotion"
+            }
+        },
+        {
+            "name": "clang",
+            "displayName": "Clang",
+            "description": "Default build options for Clang",
+            "inherits": "default",
+            "cacheVariables": {
+                "CMAKE_CXX_FLAGS": "-Wall -Wextra -Wpedantic -Wfatal-errors -Weverything -Wno-c++98-compat -Wno-c++98-compat-pedantic -Wno-c++11-compat -Wno-c++14-compat -Wno-unreachable-code -Wno-padded -Wno-reserved-id-macro -Wno-ctad-maybe-unsupported -Wno-weak-vtables -Wno-global-constructors -Wno-exit-time-destructors -Wno-unneeded-member-function -Wno-unused-member-function -Wno-c++20-designator -Wno-c++20-extensions"
+            }
+        }
+    ]
+}

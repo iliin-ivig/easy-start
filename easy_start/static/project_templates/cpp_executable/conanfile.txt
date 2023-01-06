@@ -1,0 +1,7 @@
+[requires]
+{% for requirement in requirements %}
+{{requirement}}
+{% endfor %}
+
+[generators]
+cmake

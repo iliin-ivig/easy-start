@@ -2,15 +2,10 @@ from pathlib import Path
 from case_transform import transform, CaseStyle
 import dataclasses
 import argparse
-import jinja2
 import types
 
 
 PATH_TO_STATIC_DATA: Path = (Path(__file__).parent / 'static' / 'project_templates').resolve()
-
-
-def render_string(string: str, **kwargs):
-    return jinja2.Template(string).render(**kwargs)
 
 
 def convert_dataclass_to_dict(dataclass) -> dict:

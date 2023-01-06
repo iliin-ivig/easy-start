@@ -1,4 +1,3 @@
-from easy_start.utils import render_string
 from case_transform import transform, CaseStyle
 
 from pathlib import Path
@@ -30,7 +29,7 @@ class ProjectTemplateRenderer:
         templates = [templates] if isinstance(templates, str) else templates
 
         for template in templates:
-            filepath = self.destination / render_string(template, **settings)
+            filepath = self.destination / self.jinja_env.from_string(template).render(**settings)
             filecontent = self.jinja_env.get_template(template).render(**settings)
 
             filepath.parent.mkdir(exist_ok=True, parents=True)

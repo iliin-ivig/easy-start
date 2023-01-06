@@ -1,5 +1,5 @@
-from easy_start import ProjectTemplateRenderer
-from easy_start.utils import PATH_TO_STATIC_DATA, convert_dataclass_to_dict
+from easy_start.project_template_renderer import ProjectTemplateRenderer
+from easy_start.utils import PATH_TO_PROJECT_TEMPLATES, convert_dataclass_to_dict
 from case_transform import CaseStyle
 
 from pathlib import Path
@@ -26,7 +26,7 @@ class PythonPackageSettings:
 def start_python_package(destination: Path, settings: PythonPackageSettings):
     renderer = ProjectTemplateRenderer(
         path_to_project=destination,
-        path_to_project_template=(PATH_TO_STATIC_DATA / 'python_package'),
+        path_to_project_template=(PATH_TO_PROJECT_TEMPLATES / 'python_package'),
     )
 
     settings_dict = convert_dataclass_to_dict(settings)

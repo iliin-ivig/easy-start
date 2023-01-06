@@ -1,5 +1,5 @@
-from easy_start import ProjectTemplateRenderer
-from easy_start.utils import PATH_TO_STATIC_DATA, convert_dataclass_to_dict
+from easy_start.project_template_renderer import ProjectTemplateRenderer
+from easy_start.utils import PATH_TO_PROJECT_TEMPLATES, convert_dataclass_to_dict
 
 from pathlib import Path
 import dataclasses
@@ -24,7 +24,7 @@ class CppExecutableSettings:
 def start_cpp_executable(destination: Path, settings: CppExecutableSettings):
     renderer = ProjectTemplateRenderer(
         path_to_project=destination,
-        path_to_project_template=(PATH_TO_STATIC_DATA / 'cpp_executable'),
+        path_to_project_template=(PATH_TO_PROJECT_TEMPLATES / 'cpp_executable'),
     )
 
     settings_dict = convert_dataclass_to_dict(settings)

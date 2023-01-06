@@ -9,27 +9,12 @@ From cloud-based git repository:
 pip3 install git+ssh://git@https://github.com/iliin-ivig/easy-start
 ```
 
-# Scripts
-This package provides the following scripts:
+# Usage examples
 
-    - `ivig-easy-start`
+## Python Package
 
-# Usage
-1. CLI:
-```sh
-ivig-easy-start python-package \
-    --package-name easy_start \
-    --full-package-name ivig-easy-start \
-    --description 'This package helps initialize a project using a parameterized template.' \
-    --url 'https://github.com/iliin-ivig/easy-start' \
-    --requirements 'Jinja2~=3.1.2' \
-    --scripts 'ivig-easy-start' \
-    --include-static-data true
-```
-
-2. package:
 ```python
-from easy_start.project_templates.python_package import PythonPackageSettings, start_python_package
+from easy_start import start_project, PythonPackageSettings
 from pathlib import Path
 
 settings = PythonPackageSettings(
@@ -46,5 +31,31 @@ settings = PythonPackageSettings(
     include_static_data=True,
 )
 
-start_python_package(destination=Path('../easy-start'), settings=settings)
+start_project(
+    destination=Path('./path/to/new_python_project'),
+    settings=settings,
+)
+```
+
+## C++ project with executables
+
+```python
+from easy_start import start_project, CppExecutableSettings
+from pathlib import Path
+
+settings = CppExecutableSettings(
+    project_name='BestProjectEver',
+    project_short_name='bpe',
+    description='description',
+    url='https://github.com/author/BestProjectEver',
+    requirements=['fmt/9.1.0', 'nlohmann_json/3.11.2'],
+    executables=['run', 'server'],
+    source_folder='src',
+    bin_folder='bin',
+)
+
+start_project(
+    destination=Path('./path/to/new_cpp_project'),
+    settings=settings,
+)
 ```

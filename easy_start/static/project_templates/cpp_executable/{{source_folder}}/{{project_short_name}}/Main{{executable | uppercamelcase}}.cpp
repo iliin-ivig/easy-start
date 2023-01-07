@@ -4,7 +4,7 @@
 
 int main(int /*argc*/, char */*argv*/[])
 {
-    bpe::utils::print("{{executable}} works!");
+    {{project_short_name}}::utils::print("{{executable}} works!");
 
     return 0;
 }

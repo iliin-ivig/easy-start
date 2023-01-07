@@ -6,7 +6,7 @@ pip3 install path/to/cloned/repo
 
 From cloud-based git repository:
 ```sh
-pip3 install git+https://github.com/iliin-ivig/easy-start@v0.1.0
+pip3 install git+https://github.com/iliin-ivig/easy-start@v0.1.1
 ```
 
 # Usage examples
